@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.jambox.monetisationdemo"
+    namespace = "com.jambox.monetisationdemoapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.jambox.monetisationdemo"
+        applicationId = "com.jambox.monetisationdemoapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -41,10 +41,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    //SDK dependencies
-    implementation(files("libs/JamboxSDK.aar"))
-    implementation("com.applovin:applovin-sdk:12.4.2")
-
-    //For managing App open ads
+    implementation("com.github.jamboxgames:monetise-sdk:1.0.3")
     implementation("androidx.lifecycle:lifecycle-process:2.2.0")
 }

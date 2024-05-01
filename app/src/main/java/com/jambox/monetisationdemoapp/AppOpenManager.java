@@ -1,4 +1,4 @@
-package com.jambox.monetisationdemo;
+package com.jambox.monetisationdemoapp;
 
 import android.content.Context;
 

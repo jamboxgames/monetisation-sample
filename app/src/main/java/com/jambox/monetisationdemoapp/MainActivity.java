@@ -1,4 +1,4 @@
-package com.jambox.monetisationdemo;
+package com.jambox.monetisationdemoapp;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -170,6 +170,16 @@ public class MainActivity extends AppCompatActivity {
                 ((FrameLayout)findViewById(R.id.native_ad_small)).removeAllViews();
                 ((FrameLayout)findViewById(R.id.native_ad_medium)).removeAllViews();
                 JamboxAdsHelper.HideNativeAd();
+            }
+        });
+
+        Button btn_mediation = findViewById(R.id.btn_mediation);
+        btn_mediation.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                JamboxAdsHelper.ShowMediationDebugger();
             }
         });
     }
