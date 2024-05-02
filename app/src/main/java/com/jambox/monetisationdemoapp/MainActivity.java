@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,6 +74,16 @@ public class MainActivity extends AppCompatActivity {
         //Starting Webview
         Button startBtn = findViewById(R.id.btn_start);
         startBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                StartWebview();
+            }
+        });
+
+        ImageButton h5GamesImage = findViewById(R.id.imageButton);
+        h5GamesImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

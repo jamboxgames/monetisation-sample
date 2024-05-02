@@ -41,6 +41,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation("com.github.jamboxgames:monetise-sdk:1.0.3")
+    implementation("com.github.jamboxgames:monetise-sdk:1.0.8")
     implementation("androidx.lifecycle:lifecycle-process:2.2.0")
 }

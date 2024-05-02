@@ -29,10 +29,24 @@
 
     </FrameLayout>
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="-10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#FDF6FE"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_start"
+        app:layout_constraintEnd_toStartOf="@+id/btn_start"
+        app:layout_constraintTop_toTopOf="@+id/btn_start"
+        app:srcCompat="@drawable/h5icon" />
+
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:text="Start H5 Games"
         app:layout_constraintEnd_toEndOf="parent"
