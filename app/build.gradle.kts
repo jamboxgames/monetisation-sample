@@ -7,7 +7,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.jambox.monetisationdemoapp"
+        applicationId = "com.Jambox.social.live.party"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -41,6 +41,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation("com.github.jamboxgames:monetise-sdk:1.0.8")
+    implementation("com.github.jamboxgames:monetise-sdk:1.2.0")
     implementation("androidx.lifecycle:lifecycle-process:2.2.0")
 }

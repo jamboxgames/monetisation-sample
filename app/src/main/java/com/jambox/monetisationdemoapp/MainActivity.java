@@ -1,11 +1,19 @@
 package com.jambox.monetisationdemoapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,10 +21,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.jambox.monetisation.AdjustHelper;
 import com.jambox.monetisation.JamboxAdsHelper;
+import com.jambox.monetisation.JamboxGameKeys;
 import com.jambox.monetisation.OnJamboxAdInitializeListener;
 import com.jambox.monetisation.OnRewardedAdListener;
 import com.jambox.monetisation.WebviewObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
 
         //All the button functions are set here
         SetButtonListeners();
+        SetGamesDropdown();
+
+        //Back button handler
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true)
+        {
+            @Override
+            public void handleOnBackPressed()
+            {
+                webview.BackWebview();
+            }
+        });
     }
 
     void SetButtonListeners()
@@ -92,13 +116,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Closing webview on back button pressed
-        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true)
+        //Starting Webview with game id
+        Button startIdBtn = findViewById(R.id.btn_start_id);
+        startIdBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void handleOnBackPressed()
+            public void onClick(View v)
             {
-                CloseWebview();
+                StartGame(selectedGame);
             }
         });
 
@@ -195,13 +220,44 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    JamboxGameKeys selectedGame;
+    void SetGamesDropdown()
+    {
+        ArrayList<JamboxGameKeys> items = new ArrayList<JamboxGameKeys>();
+        items.addAll(Arrays.asList(JamboxGameKeys.values()));
+        ArrayAdapter<JamboxGameKeys> adapter = new ArrayAdapter<>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, items);
+
+        Spinner spinner = findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                selectedGame = (JamboxGameKeys)parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
+
+    }
     void StartWebview()
     {
-        if (webview != null)
+        if (webview != null && !webview.IsWebviewDestroyed())
             return;
 
         webview = new WebviewObject(this, h5ClientId);
         webview.StartWebview();
+    }
+
+    void StartGame(JamboxGameKeys game)
+    {
+        webview = new WebviewObject(this, h5ClientId);
+        webview.StartWebviewGame(game);
     }
 
     void CloseWebview()
@@ -243,7 +299,39 @@ public class MainActivity extends AppCompatActivity {
 
     void ShowIS()
     {
-        JamboxAdsHelper.ShowRewarded(null);
+        JamboxAdsHelper.ShowInterstitial(null);
+    }
+
+    protected void onResume() {
+        super.onResume();
+        AdjustHelper.onResume();
+    }
+    protected void onPause() {
+        super.onPause();
+        AdjustHelper.onPause();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev)
+    {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View view = getCurrentFocus();
+            if (view != null && view instanceof EditText) {
+                Rect r = new Rect();
+                view.getGlobalVisibleRect(r);
+                int rawX = (int)ev.getRawX();
+                int rawY = (int)ev.getRawY();
+                if (!r.contains(rawX, rawY)) {
+                    view.clearFocus();
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }

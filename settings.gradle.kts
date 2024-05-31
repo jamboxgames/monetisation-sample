@@ -16,6 +16,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        //mavenLocal()
 
         //Repository for the monetisation-sdk
         maven { url = uri("https://www.jitpack.io" ) }

@@ -22,6 +22,7 @@
         android:id="@+id/native_ad_medium"
         android:layout_width="300dp"
         android:layout_height="400dp"
+        android:layout_marginTop="75dp"
         app:layout_constraintBottom_toTopOf="@+id/native_ad_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +41,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/btn_start"
         app:layout_constraintEnd_toStartOf="@+id/btn_start"
         app:layout_constraintTop_toTopOf="@+id/btn_start"
-        app:srcCompat="@drawable/h5icon" />
+        app:srcCompat="@drawable/floater" />
 
     <Button
         android:id="@+id/btn_start"
@@ -139,5 +140,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_native_medium" />
+
+    <Button
+        android:id="@+id/btn_start_id"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:text="Start Game"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinner"
+        app:layout_constraintTop_toTopOf="@+id/spinner" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        style="@android:style/Widget.Material.Spinner"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#4E4E4E"
+        app:layout_constraintEnd_toStartOf="@+id/btn_start_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mediation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
