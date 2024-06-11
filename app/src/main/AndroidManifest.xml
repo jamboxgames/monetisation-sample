@@ -36,8 +36,6 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
-        <meta-data android:name="adjust_app_token" android:value="uw277yqlu1hc" />
-
     </application>
 
 </manifest>

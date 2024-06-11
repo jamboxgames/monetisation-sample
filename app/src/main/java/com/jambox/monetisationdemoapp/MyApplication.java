@@ -1,15 +1,14 @@
 package com.jambox.monetisationdemoapp;
 
-import com.jambox.monetisation.AdjustApplication;
+import android.app.Application;
 
-public class MyApplication extends AdjustApplication
+import com.jambox.monetisation.AdjustHelper;
+
+public class MyApplication extends Application
 {
     @Override
-    public void onCreate()
-    {
-
-        //My Application class code
-
+    public void onCreate() {
         super.onCreate();
+        AdjustHelper.Initialize(this, "uw277yqlu1hc");
     }
 }

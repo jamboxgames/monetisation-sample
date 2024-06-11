@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId = "com.Jambox.social.live.party"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -41,6 +41,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation("com.github.jamboxgames:monetise-sdk:1.2.0")
+    implementation("com.github.jamboxgames:monetise-sdk:1.2.3")
     implementation("androidx.lifecycle:lifecycle-process:2.2.0")
+    implementation("androidx.activity:activity-compose:1.9.0")
 }
